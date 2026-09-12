@@ -1,7 +1,7 @@
 function EDiff=rnewtsolver_p(p,b,c,A,Nx,tol,u0,delta,m,plot_last)
 
 % Inexact Newton method for approximating solutions of u''''+bu''+cu=|u|^(p-1)*u
-% Sample usage rgradsolver_p(3,-2,1,40,500,1e-10,0,1)
+% Sample usage E=rnewtsolver_p(3,1.8,1,50,2000,1e-10,0,1,2,1)
 % Spatial interval is [-A,A], with Nx subintervals. 
 % delta = step size in gradient descent step
 % u0 = initial guess
