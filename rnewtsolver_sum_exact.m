@@ -107,7 +107,7 @@ end
 if plot_final==1
     figure(1)
     hold off
-    plot(x,u,'b')
+    plot(x,u,'b','LineWidth',1)
     hold on
     plot(x,exact,'r')
 end
