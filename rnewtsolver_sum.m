@@ -7,7 +7,7 @@ function E=rnewtsolver_sum(p,q,b,c,A,Nx,tol,u,delta,n,plot_final)
 % delta = step size in approximation of Hessian of S
 % u = initial guess. Set u=0 to use default Gaussian
 % tol = error tolerance for H^2 norm of gradient of S
-% n = # of terms in Neumann series approximation of inverse of Hessian of action functional S
+% n = # of terms in Neumann series approximation of inverse of Hessian of S
 % Output E is vector of H^2 errors between successive iterates
 % set plot_final==1 to plot final iterate
 % c must be positive and b must be less than 2*sqrt(c)
@@ -17,7 +17,7 @@ if c<=0 || b>=2*sqrt(c)
 end
 
 k=[(0:Nx/2) (1:Nx/2-1)-Nx/2]; % Fourier transform variable
-x=(A/(Nx-1))*(2*(1:Nx)-Nx-1); % Real spatial variable
+x=(A/(Nx))*(2*(1:Nx)-Nx); % Real spatial variable
 
 % If no initial guess specified, use this
 if u==0
