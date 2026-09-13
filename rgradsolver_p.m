@@ -15,7 +15,7 @@ if c<=0 || b>=2*sqrt(c)
 end
 
 k=[(0:Nx/2) (1:Nx/2-1)-Nx/2]; % Fourier transform variable
-x=(A/(Nx-1))*(2*(1:Nx)-Nx-1); % Real spatial variable
+x=(A/Nx)*(2*(1:Nx)-Nx); % Real spatial variable
 
 % If no initial guess specified, use this
 if u==0
