@@ -6,7 +6,7 @@ function E=rnewtsolver_sum_exact(p,b,A,Nx,tol,u,delta,n,plot_final,plot_error)
 % Spatial interval is [-A,A], with Nx subintervals.
 % delta = step size in approximation of Hessian of S
 % u = initial guess, set u=0 to use default Gaussian
-% tol = H^2 norm error tolerance
+% tol = H^2 norm error tolerance between u and exact solution
 % output E is vector of H^2 errors between iterates and exact solution
 % n = # of terms in Neumann series approximation of inverse of Hessian of S
 % set plot_final==1 to plot final iterate

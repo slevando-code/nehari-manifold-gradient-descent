@@ -1,13 +1,19 @@
-function E=gradsolver_p_exact(p,b,A,Nx,tol,u,delta,plot_last,plot_error)
+function E=gradsolver_p_exact(p,b,A,Nx,tol,u,delta,plot_final,plot_error)
 
 % Gradient descent method for approximating solutions of u''''+bu''+cu=|u|^(p-1)*u
 % Sample usage: E=gradsolver_p_exact(3,-2.5,50,2000,1e-10,0,1.3,1,1)
 % Spatial interval is [-A,A], with Nx subintervals. 
 % delta = step size in gradient descent step
 % u = initial guess
-% tol = error tolerance 
+% tol = H^2 norm error tolerance between u and exact solution
 % b must be less than 0 (for exact solution below)
 % Output E is vector of H^2 errors between iterates and exact solution
+% set plot_final==1 to plot final iterate
+% set plot_error==1 to plot final difference
+
+if b >= 0
+    error('b must be less than zero')
+end
 
 % Calculate c and parameters in exact solution in terms of b and p
 c=(2*(p+1)*b/(p^2+2*p+5))^2;
@@ -43,7 +49,7 @@ E=[];
 % Main Loop
 while (H2err>tol)
 
-    % Compute gradient of S and take step in that direction
+    % Compute gradient of S and take descent step
     f=abs(u).^(p-1).*u;
     gradS=real(u-ifft(fft(f)./m));
     u=u-delta*gradS;
@@ -65,12 +71,12 @@ while (H2err>tol)
 end
 
 % Plot exact solution together with final iterate
-if plot_last==1
+if plot_final==1
     figure(1)
     hold off
-    plot(x,u,'b')
+    plot(x,u,'b','LineWidth',1)
     hold on
-    plot(x,exact,'r','LineWidth',1)
+    plot(x,exact,'r')
     xlabel({'$x$'},'interpreter','latex','FontSize',12)
     ylabel({'$\varphi(x)$'},'interpreter','latex','FontSize',12)
 end
