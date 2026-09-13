@@ -10,7 +10,6 @@ function E=gradsolver_sum(p,q,b,c,A,Nx,tol,u,delta,plot_last)
 % Output E is vector of H^2 errors between successive iterates
 % b must be less than 2*sqrt(c)
 % set plot_final==1 to plot final iterate
-% set plot_error==1 to plot final difference
 
 if b >= 2*sqrt(c)
     error('b must be less than 2*sqrt(c)')
