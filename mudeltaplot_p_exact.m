@@ -5,6 +5,7 @@ function mudeltaplot_p_exact(p,b,A,Nx,tol,u,Delta)
 % Algorithm 1 = Gradient descent (gradsolver_p_exact)
 % Algorithm 2 = Reimannian gradient descent (rgradsolver_p_exact)
 % Algorithm 3 = Inexact Newton (rnewtsolver_p_exact) 
+% Sample usage: mudeltaplot_p_exact(3,-2.5,100,2000,1e-10,0,.4:.01:1.8)
 
 Mu1=[];
 Mu2=[];
