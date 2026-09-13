@@ -1,7 +1,7 @@
-function E=rnewtsolver_diff(p,q,b,c,A,Nx,tol,u0,delta,n,plot_final)
+function E=rnewtsolver_diff(p,q,b,c,A,Nx,tol,u,delta,n,plot_final)
 
 % Nehari manifold inexact Newton method for approximating solutions of
-% u''''+bu''+cu=|u|^(q-1)*u-|u|^(p-1)*u
+% u''''+bu''+cu=|u|^(q-1)*u-|u|^(p-1)*u with p<q
 % Sample usage E=rnewtsolver_diff(3,5,1.8,1,50,1000,1e-10,0,.5,2,1)
 % Spatial interval is [-A,A], with Nx subintervals.
 % delta = step size in approximation of Hessian of S
@@ -16,12 +16,15 @@ if c<=0 || b>=2*sqrt(c)
     error('Choose c>0 and b<2*sqrt(c)')
 end
 
+if p>=q
+    error('Choose p<q.')
+end
+
 k=[(0:Nx/2) (1:Nx/2-1)-Nx/2]; % Fourier transform variable
-x=(A/(Nx-1))*(2*(1:Nx)-Nx-1); % Real spatial variable
+x=(A/Nx)*(2*(1:Nx)-Nx); % Real spatial variable
 
 E=[];
 
-u=u0;
 if u==0
     u=exp(-x.^2);
 end

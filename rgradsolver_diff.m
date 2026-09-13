@@ -1,7 +1,7 @@
 function E=rgradsolver_diff(p,q,b,c,A,Nx,tol,u0,delta,plot_final)
 
 % Riemannian Nehari manifold gradient descent method for approximating solutions of
-% u''''+bu''+cu=|u|^(q-1)*u-|u|^(p-1)*u
+% u''''+bu''+cu=|u|^(q-1)*u-|u|^(p-1)*u with p<q
 % Sample usage E=rgradsolver_diff(3,5,1.8,1,50,1000,1e-10,0,.5,1)
 % Spatial interval is [-A,A], with Nx subintervals.
 % delta = step size in gradient descent step
@@ -14,8 +14,13 @@ function E=rgradsolver_diff(p,q,b,c,A,Nx,tol,u0,delta,plot_final)
 if c<=0 || b>=2*sqrt(c)
     error('Choose c>0 and b<2*sqrt(c)')
 end
+
+if p>=q
+    error('Choose p<q.')
+end
+
 k=[(0:Nx/2) (1:Nx/2-1)-Nx/2]; % Fourier transform variable
-x=(A/(Nx-1))*(2*(1:Nx)-Nx-1); % Real spatial variable
+x=(A/Nx)*(2*(1:Nx)-Nx); % Real spatial variable
 
 E=[];
 

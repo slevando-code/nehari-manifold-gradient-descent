@@ -1,7 +1,20 @@
 function E=gradsolver_diff(p,q,b,c,A,Nx,tol,u,delta,plot_final)
 
+arguments
+    p (1,1) double = 3
+    q (1,1) double = 5
+    b (1,1) double = 1.8
+    c (1,1) double = 1
+    A (1,1) double = 50
+    Nx (1,1) double {mustBeInteger, mustBePositive} = 1000
+    tol (1,1) double {mustBePositive} = 1e-10
+    u (1,:) double = 0
+    delta (1,1) double {mustBePositive} = 0.5
+    plot_final double = 1
+end
+
 % Nehari manifold gradient descent method for approximating solutions of
-% u''''+bu''+cu=|u|^(q-1)*u-|u|^(p-1)*u
+% u''''+bu''+cu=|u|^(q-1)*u-|u|^(p-1)*u where q>p
 % Sample usage E=gradsolver_diff(3,5,1.8,1,50,1000,1e-10,0,.5,1)
 % Spatial interval is [-A,A], with Nx subintervals.
 % delta = step size in gradient descent step
@@ -12,11 +25,15 @@ function E=gradsolver_diff(p,q,b,c,A,Nx,tol,u,delta,plot_final)
 % c must be positive and b must be less than 2*sqrt(c)
 
 if c<=0 || b>=2*sqrt(c)
-    error('Choose c>0 and b<2*sqrt(c)')
+    error('Choose c>0 and b<2*sqrt(c).')
+end
+
+if p>=q
+    error('Choose p<q.')
 end
 
 k=[(0:Nx/2) (1:Nx/2-1)-Nx/2]; % Fourier transform variable
-x=(A/(Nx-1))*(2*(1:Nx)-Nx-1); % Real spatial variable
+x=(A/Nx)*(2*(1:Nx)-Nx); % Real spatial variable
 
 
 E=[];
