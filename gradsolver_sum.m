@@ -1,4 +1,4 @@
-function E=gradsolver_sum(p,q,b,c,A,Nx,tol,u,delta,plot_last)
+function E=gradsolver_sum(p,q,b,c,A,Nx,tol,u,delta,plot_final)
 
 % Nehari manifold gradient descent method for approximating solutions of
 % u''''+bu''+cu=|u|^(p-1)*u+|u|^(q-1)*u
@@ -65,7 +65,7 @@ while (err>tol)
 
 end
 
-if plot_last==1
+if plot_final==1
     figure(1)
     hold off
     plot(x,u)

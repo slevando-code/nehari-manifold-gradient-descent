@@ -1,4 +1,4 @@
-function E=rnewtsolver_sum(p,q,b,c,A,Nx,tol,u,delta,n,plot_last)
+function E=rnewtsolver_sum(p,q,b,c,A,Nx,tol,u,delta,n,plot_final)
 
 % Nehari manifold inexact Newton method for approximating solutions of
 % u''''+bu''+cu=|u|^(p-1)*u+|u|^(q-1)*u
@@ -11,7 +11,6 @@ function E=rnewtsolver_sum(p,q,b,c,A,Nx,tol,u,delta,n,plot_last)
 % Output E is vector of H^2 errors between successive iterates
 % b must be less than 2*sqrt(c)
 % set plot_final==1 to plot final iterate
-% set plot_error==1 to plot final difference
 
 if b >= 2*sqrt(c)
     error('b must be less than 2*sqrt(c)')
@@ -86,8 +85,9 @@ while (err>tol)
 
 end
 
-if plot_last==1
+if plot_final==1
     figure(1)
+    hold off
     plot(x,u)
 end
 
