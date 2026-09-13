@@ -1,16 +1,21 @@
-function EDiff=gradsolver_p(p,b,c,A,Nx,tol,u,delta,plot_last);
+function E=gradsolver_p(p,b,c,A,Nx,tol,u,delta,plot_final)
 
 % Nehari gradient descent method for approximating solutions of u''''+bu''+cu=|u|^(p-1)*u
 % Sample usage E=gradsolver_p(3,1.7,1,50,1000,1e-10,0,1.2,1)
-% Spatial interval is [-A,A], with Nx subintervals. 
+% Spatial interval is [-A,A], with Nx subintervals. Nx must be even.
 % delta = step size in gradient descent step
-% u = initial guess
+% u = initial guess. Set u=0 to use default Gaussian
 % tol = error tolerance for H^2 norm of gradient of S
-% Output EDiff is vector of H^2 norms of differences between iterates
+% Output E is vector of H^2 norms of differences between iterates
 % c must be positive and b must be less than 2*sqrt(c)
+% set plot_final==1 to plot final iterate
+
+if c<=0 || b>=2*sqrt(c)
+    error('Choose c>0 and b<2*sqrt(c)')
+end
 
 k=[(0:Nx/2) (1:Nx/2-1)-Nx/2]; % Fourier transform variable
-x=(A/Nx)*(2*(1:Nx)-Nx); % Real spatial variable
+x=(A/(Nx-1))*(2*(1:Nx)-Nx-1); % Real spatial variable
 
 if u==0
     u=exp(-x.^2);
@@ -26,8 +31,7 @@ I=(1/2)*sum(dI.*u)*(A/Nx);
 alpha=(2*I/N)^(1/(p-1));
 u=alpha*u;
 
-ERes=[];
-EDiff=[];
+E=[];
 Reserr=tol+1;
 
 while (Reserr>tol)
@@ -56,17 +60,17 @@ while (Reserr>tol)
     Ldiff=real(ifft(m.*fft(diff)));
     Differr=sqrt(sum(Ldiff.*diff)*(A/Nx));
 
-    ERes=[ERes;Reserr];
-    EDiff=[EDiff;Differr];
+    E=[E;Differr];
 
 end
 
 % Plot final iterate
-if plot_last==1
+if plot_final==1
     figure(1)
     hold off
-    plot(x,u,'k','LineWidth',1)
+    plot(x,u,'LineWidth',1)
     xlabel({'$x$'},'interpreter','latex','FontSize',12)
+    ylabel({'$u$'},'interpreter','latex','FontSize',12)
 end
 
 

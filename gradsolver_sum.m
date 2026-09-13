@@ -6,13 +6,13 @@ function E=gradsolver_sum(p,q,b,c,A,Nx,tol,u,delta,plot_final)
 % Spatial interval is [-A,A], with Nx endpoints. Nx must be even.
 % delta = step size in gradient descent step
 % u = initial guess, enter 0 to use Gaussian
-% tol = H^2 norm error tolerance 
+% tol = error tolerance for H^2 norm of gradient of S
 % Output E is vector of H^2 errors between successive iterates
-% b must be less than 2*sqrt(c)
 % set plot_final==1 to plot final iterate
+% c must be positive and b must be less than 2*sqrt(c)
 
-if b >= 2*sqrt(c)
-    error('b must be less than 2*sqrt(c)')
+if c<=0 || b>=2*sqrt(c)
+    error('Choose c>0 and b<2*sqrt(c)')
 end
 
 k=[(0:Nx/2) (1:Nx/2-1)-Nx/2]; % Fourier transform variable
@@ -65,10 +65,13 @@ while (err>tol)
 
 end
 
+% Plot final iterate
 if plot_final==1
     figure(1)
     hold off
-    plot(x,u)
+    plot(x,u,'LineWidth',1)
+    xlabel({'$x$'},'interpreter','latex','FontSize',12)
+    ylabel({'$u$'},'interpreter','latex','FontSize',12)
 end
 
 function x=PRoot_sum(p,q,a,b,c)

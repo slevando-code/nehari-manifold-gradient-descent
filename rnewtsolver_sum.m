@@ -4,18 +4,17 @@ function E=rnewtsolver_sum(p,q,b,c,A,Nx,tol,u,delta,n,plot_final)
 % u''''+bu''+cu=|u|^(p-1)*u+|u|^(q-1)*u
 % Sample usage: E=rnewtsolver_sum(3,6,2,2,50,1000,1e-10,0,1.2,2,1)
 % Spatial interval is [-A,A], with Nx endpoints. Nx must be even.
-% delta = step size in gradient descent step
+% delta = step size in approximation of Hessian of S
 % u = initial guess. Set u=0 to use default Gaussian
-% tol = error tolerance
+% tol = error tolerance for H^2 norm of gradient of S
 % n = # of terms in Neumann series approximation of inverse of Hessian of action functional S
 % Output E is vector of H^2 errors between successive iterates
-% b must be less than 2*sqrt(c)
 % set plot_final==1 to plot final iterate
+% c must be positive and b must be less than 2*sqrt(c)
 
-if b >= 2*sqrt(c)
-    error('b must be less than 2*sqrt(c)')
+if c<=0 || b>=2*sqrt(c)
+    error('Choose c>0 and b<2*sqrt(c)')
 end
-
 
 k=[(0:Nx/2) (1:Nx/2-1)-Nx/2]; % Fourier transform variable
 x=(A/(Nx-1))*(2*(1:Nx)-Nx-1); % Real spatial variable
@@ -85,10 +84,13 @@ while (err>tol)
 
 end
 
+% Plot final iterate
 if plot_final==1
     figure(1)
     hold off
-    plot(x,u)
+    plot(x,u,'LineWidth',1)
+    xlabel({'$x$'},'interpreter','latex','FontSize',12)
+    ylabel({'$u$'},'interpreter','latex','FontSize',12)
 end
 
 function x=PRoot_sum(p,q,a,b,c)

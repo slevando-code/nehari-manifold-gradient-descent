@@ -1,17 +1,22 @@
-function E=rnewtsolver_p(p,b,c,A,Nx,tol,u0,delta,n,plot_last)
+function E=rnewtsolver_p(p,b,c,A,Nx,tol,u0,delta,n,plot_final)
 
-% Inexact Newton method for approximating solutions of u''''+bu''+cu=|u|^(p-1)*u
+% Nehari manifold inexact Newton method for approximating solutions of u''''+bu''+cu=|u|^(p-1)*u
 % Sample usage: E=rnewtsolver_p(3,1.8,1,50,2000,1e-10,0,1,2,1)
 % Spatial interval is [-A,A], with Nx subintervals. 
-% delta = step size in gradient descent step
+% delta = step size in approximation of Hessian of S
 % u0 = initial guess
 % tol = error tolerance 
 % n = # of terms in Neumann series approximation of inverse of Hessian of action functional S
 % Output E is vector of H^2 errors between iterates and exact solution
+% c must be positive and b must be less than 2*sqrt(c)
+% set plot_final==1 to plot final iterate
+
+if c<=0 || b>=2*sqrt(c)
+    error('Choose c>0 and b<2*sqrt(c)')
+end
 
 k=[(0:Nx/2) (1:Nx/2-1)-Nx/2]; % Fourier transform variable
-
-x=(A/Nx)*(2*(1:Nx)-Nx); % Real spatial variable
+x=(A/(Nx-1))*(2*(1:Nx)-Nx-1); % Real spatial variable
 
 % If no initial guess specified, use this
 u=u0;
@@ -85,9 +90,11 @@ E=[E;differr];
 
 end
 
-
-if plot_last==1
+% Plot final iterate
+if plot_final==1
     figure(1)
     hold off
-    plot(x,u)
+    plot(x,u,'LineWidth',1)
+    xlabel({'$x$'},'interpreter','latex','FontSize',12)
+    ylabel({'$u$'},'interpreter','latex','FontSize',12)
 end

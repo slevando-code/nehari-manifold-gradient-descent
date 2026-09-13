@@ -1,17 +1,23 @@
-function EDiff=rgradsolver_p(p,b,c,A,Nx,tol,u0,delta,plot_last);
+function EDiff=rgradsolver_p(p,b,c,A,Nx,tol,u,delta,plot_final)
 
 % Riemannian gradient descent method for approximating solutions of u''''+bu''+cu=|u|^(p-1)*u
 % Sample usage E=rgradsolver_p(3,1.8,1,50,1000,1e-10,0,1.2,1)
-% Spatial interval is [-A,A], with Nx subintervals. 
+% Spatial interval is [-A,A], with Nx subintervals. Nx must be even
 % delta = step size in gradient descent step
-% u0 = initial guess
-% tol = error tolerance 
+% u = initial guess, set u=0 to use default Gaussian
+% tol = error tolerance for H^2 norm of gradient of S
+% Output E is vector of H^2 norms of differences between iterates
+% c must be positive and b must be less than 2*sqrt(c)
+% set plot_final==1 to plot final iterate
+
+if c<=0 || b>=2*sqrt(c)
+    error('Choose c>0 and b<2*sqrt(c)')
+end
 
 k=[(0:Nx/2) (1:Nx/2-1)-Nx/2]; % Fourier transform variable
-x=(A/Nx)*(2*(1:Nx)-Nx); % Real spatial variable
+x=(A/(Nx-1))*(2*(1:Nx)-Nx-1); % Real spatial variable
 
 % If no initial guess specified, use this
-u=u0;
 if u==0
     u=exp(-x.^2); 
 end
@@ -64,7 +70,7 @@ while (Reserr>tol)
     u=u-delta*proj;
 
 
-    % Determine alpha for which P(alpha*u)=0 ands rescale u
+    % Determine alpha for which P(alpha*u)=0 and rescale u
     N=sum((abs(u).^(p+1)))*(A/Nx);
     dJ=real(ifft(m.*fft(u)));
     J=(1/2)*sum(dJ.*u)*(A/Nx);
@@ -86,10 +92,11 @@ end
 
 
 % Plot final iterate
-if plot_last==1
+if plot_final==1
     figure(1)
     hold off
-    plot(x,u)
+    plot(x,u,'LineWidth',1)
+    xlabel({'$x$'},'interpreter','latex','FontSize',12)
+    ylabel({'$u$'},'interpreter','latex','FontSize',12)
 end
-
 
