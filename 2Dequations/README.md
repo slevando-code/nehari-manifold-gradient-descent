@@ -8,7 +8,9 @@ N={u : P(u)=0}
 where P(u)=<S'(u),u>.
 
 gradsolver is a constrained gradient descent method
+
 rgradsolver is a constrained Rimennan gradient descent method
+
 rnewtsolver is a constrained Riemannian inexact Newton method, where the inverse of the Hessian of S is approximated by a truncated Neumann series.
 
 
