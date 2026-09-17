@@ -11,7 +11,9 @@ where F'=f.
 Thus all solutions lie on the Nehari manifold P(u)=0, where P(u)=<S'(u),u>. There are three methods, all of which involve minimizing S constrained to the Nehari manifold. 
 
 The first method, "gradsolver", is a simple gradient descent followed by a scaling back to the Nehari manifold.
+
 The second method, "rgradsolver", is a Riemannian gradient descent, where the gradient descent direction is determined by projecting the gradient of S onto the tangent space of the Nehari manifold. 
+
 The third method, "rnewtsolver", is an inexact Newton method in which the Newton iteration step is approximated by using a Neumann series to approximate the Hessian of S.
 
 For each method:
@@ -24,9 +26,9 @@ _diff stands for a difference of powers f(u)=|u|^(q-1)*u-|u|^(p-1)*u where p<q
 
 Solvers without _exact require all parameters in the equation as inputs (b,c,p,q), as well as the width of the spatial interval A, the number of subintervals Nx, an initial guess u (default is a Gaussian), an H^2 norm error tolerance tol, and step size delta. rnewtsolver also requires the number of terms n in the sum approximating the inverse of the Hessian. These solvers stop when the H^2 norm of the gradient of S is less than tol. 
 
-The ratioplot scripts display ratios of H^2 norms of differences of successive iterates, ||u_{k+1}-u_k||/||u_k-u_){k-1}||. 
+The ratioplot_ scripts display ratios of H^2 norms of differences of successive iterates, ||u_{k+1}-u_k||/||u_k-u_){k-1}||. 
 
-The mudeltaplot scripts display the final ratios as the step size delta is varied. 
+The mudeltaplot_ scripts display the final ratios as the step size delta is varied. 
 
 In the case of a pure power and a sum of powers where q=2*p-1, exact solutions are known for certain (b,c) parameter pairs. The solvers with _exact in their names compare iterates to the known exact solution. In these solvers c is determined by b and p, and there are additional restrcitions on b. These solvers stop when the H^2 norm of the difference from the exact solution is less than tol.
 
