@@ -18,15 +18,15 @@ The third method, "rnewtsolver", is an inexact Newton method in which the Newton
 
 For each method:
 
-_p stands for the pure power nonlinearity $f(u)=|u|^(p-1)u$
+_p stands for the pure power nonlinearity $f(u)=|u|^{p-1}u$
 
-_sum stands for a sum of powers $f(u)=|u|^(p-1)*u+|u|^(q-1)*u$
+_sum stands for a sum of powers $f(u)=|u|^{p-1}u+|u|^{q-1}u$
 
-_diff stands for a difference of powers $f(u)=|u|^(q-1)*u-|u|^(p-1)*u$ where $p<q$
+_diff stands for a difference of powers $f(u)=|u|^{q-1}u-|u|^{p-1}u$ where $p<q$
 
 Solvers without _exact require all parameters in the equation as inputs (b,c,p,q), as well as the width of the spatial interval A, the number of subintervals Nx, an initial guess u (default is a Gaussian), an H^2 norm error tolerance tol, and step size delta. rnewtsolver also requires the number of terms n in the sum approximating the inverse of the Hessian. These solvers stop when the H^2 norm of the gradient of S is less than tol. 
 
-The ratioplot_ scripts display ratios of H^2 norms of differences of successive iterates, ||u_{k+1}-u_k||/||u_k-u_){k-1}||. 
+The ratioplot_ scripts display ratios of H^2 norms of differences of successive iterates, $\frac{\|u_{k+1}-u_k\|}{\|u_k-u_{k-1}\|}$. 
 
 The mudeltaplot_ scripts display the final ratios as the step size delta is varied. 
 
