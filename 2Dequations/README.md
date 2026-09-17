@@ -4,7 +4,7 @@ MATLAB code for solving elliptic equations using Nehari manifold gradient descen
 A collection of m-files for approximating nontrivial solutions of the PDE $Lu=f(u)$ on $R^2$ for various nonlinear terms $f(u)$, where $Lu=a \Delta^2u -b\Delta u +(c\cdot\nabla)^2u+u$.
 
 Solutions are critical points of the functional $S$ defined by
-$S(u)=\frac12\int_R^2 Lu * u dx - \int_R^2 F(u) dx$
+$S(u)=\frac12\int_{R^2} Lu * u dx - \int_{R^2} F(u) dx$
 where $F'=f$. 
 
 Thus all solutions lie on the Nehari manifold $P(u)=0$, where $P(u)=<S'(u),u>$. There are three methods, all of which involve minimizing $S$ constrained to the Nehari manifold. 
