@@ -1,7 +1,8 @@
 function E=rgradsolver_p_exact(p,b,A,Nx,tol,u,delta,plot_final,plot_error)
 
 % Riemannian Nehari gradient descent method for approximating solutions of u''''+bu''+cu=|u|^(p-1)*u
-% Sample usage: E=rgradsolver_p_exact(3,-2.5,50,2000,1e-10,0,1.2,1,1)
+% Sample usage: 
+% E=rgradsolver_p_exact(3,-2.5,50,2000,1e-10,0,1.2,1,1)
 % Spatial interval is [-A,A], with Nx subintervals. Nx must be even
 % delta = step size in gradient descent step
 % u = initial guess

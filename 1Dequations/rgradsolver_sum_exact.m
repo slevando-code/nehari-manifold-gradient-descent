@@ -2,7 +2,8 @@ function E=rgradsolver_sum_exact(p,b,A,Nx,tol,u,delta,plot_final,plot_error)
 
 % Nehari manifold Riemannian gradient descent method for approximating solutions of
 % u''''+bu''+cu=|u|^(p-1)*u+|u|^(q-1)*u
-% Sample usage: E=rgradsolver_sum_exact(3,-4,100,4000,1e-10,0,1.1,1,1)
+% Sample usage: 
+% E=rgradsolver_sum_exact(3,-4,100,4000,1e-10,0,1.1,1,1)
 % Spatial interval is [-A,A], with Nx subintervals.
 % delta = step size in gradient descent step
 % u = initial guess, set u=0 to use default Gaussian
@@ -83,7 +84,7 @@ while (H2err>tol)
 
     diff=u-exact;
     Ldiff=real(ifft(v.*fft(diff)));
-    H2err=sqrt(sum(Ldiff.*diff)*(A/Nx))
+    H2err=sqrt(sum(Ldiff.*diff)*(A/Nx));
     E=[E ; H2err];
 
 end

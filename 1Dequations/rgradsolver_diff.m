@@ -2,7 +2,8 @@ function E=rgradsolver_diff(p,q,b,c,A,Nx,tol,u0,delta,plot_final)
 
 % Riemannian Nehari manifold gradient descent method for approximating solutions of
 % u''''+bu''+cu=|u|^(q-1)*u-|u|^(p-1)*u with p<q
-% Sample usage E=rgradsolver_diff(3,5,1.8,1,50,1000,1e-10,0,.5,1)
+% Sample usage:
+% E=rgradsolver_diff(3,5,1.8,1,50,1000,1e-10,0,.5,1)
 % Spatial interval is [-A,A], with Nx subintervals.
 % delta = step size in gradient descent step
 % u = initial guess, set u=0 to use default Gaussian

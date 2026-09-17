@@ -1,7 +1,8 @@
 function EDiff=rgradsolver_p(p,b,c,A,Nx,tol,u,delta,plot_final)
 
 % Riemannian gradient descent method for approximating solutions of u''''+bu''+cu=|u|^(p-1)*u
-% Sample usage E=rgradsolver_p(3,1.8,1,50,1000,1e-10,0,1.2,1)
+% Sample usage:
+% E=rgradsolver_p(3,1.8,1,50,1000,1e-10,0,1.2,1)
 % Spatial interval is [-A,A], with Nx subintervals. Nx must be even
 % delta = step size in gradient descent step
 % u = initial guess, set u=0 to use default Gaussian
@@ -79,7 +80,7 @@ while (Reserr>tol)
 
     % Compute residual error, the H^2 norm of the gradient of S, and store in error vector
     LgradS=real(ifft(fft(gradS).*m));
-    Reserr=sqrt(sum(LgradS.*gradS)*(A/Nx))
+    Reserr=sqrt(sum(LgradS.*gradS)*(A/Nx));
     E=[E;Reserr];
 
     % Compute H^2 error between iterates and store in error vector

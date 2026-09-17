@@ -1,7 +1,8 @@
 function E=gradsolver_p_exact(p,b,A,Nx,tol,u,delta,plot_final,plot_error)
 
 % Gradient descent method for approximating solutions of u''''+bu''+cu=|u|^(p-1)*u
-% Sample usage: E=gradsolver_p_exact(3,-2.5,50,2000,1e-10,0,1.3,1,1)
+% Sample usage: 
+% E=gradsolver_p_exact(3,-2.5,50,2000,1e-10,0,1.3,1,1)
 % Spatial interval is [-A,A], with Nx subintervals. 
 % delta = step size in gradient descent step
 % u = initial guess

@@ -2,7 +2,8 @@ function E=rnewtsolver_sum(p,q,b,c,A,Nx,tol,u,delta,n,plot_final)
 
 % Nehari manifold inexact Newton method for approximating solutions of
 % u''''+bu''+cu=|u|^(p-1)*u+|u|^(q-1)*u
-% Sample usage: E=rnewtsolver_sum(3,6,2,2,50,1000,1e-10,0,1.2,2,1)
+% Sample usage: 
+% E=rnewtsolver_sum(3,6,2,2,50,1000,1e-10,0,1.2,2,1)
 % Spatial interval is [-A,A], with Nx endpoints. Nx must be even.
 % delta = step size in approximation of Hessian of S
 % u = initial guess. Set u=0 to use default Gaussian

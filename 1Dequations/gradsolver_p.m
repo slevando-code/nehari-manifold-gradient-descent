@@ -1,7 +1,8 @@
 function E=gradsolver_p(p,b,c,A,Nx,tol,u,delta,plot_final)
 
 % Nehari gradient descent method for approximating solutions of u''''+bu''+cu=|u|^(p-1)*u
-% Sample usage E=gradsolver_p(3,1.7,1,50,1000,1e-10,0,1.2,1)
+% Sample usage:
+% E=gradsolver_p(3,1.7,1,50,1000,1e-10,0,1.2,1)
 % Spatial interval is [-A,A], with Nx subintervals. Nx must be even.
 % delta = step size in gradient descent step
 % u = initial guess. Set u=0 to use default Gaussian

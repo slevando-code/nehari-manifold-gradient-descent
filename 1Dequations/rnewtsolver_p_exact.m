@@ -1,7 +1,8 @@
 function E=rnewtsolver_p_exact(p,b,A,Nx,tol,u,delta,n,plot_final,plot_error)
 
 % Inexact Newton method for approximating solutions of u''''+bu''+cu=|u|^(p-1)*u
-% Sample usage: E=rnewtsolver_p_exact(3,-2.5,50,2000,1e-10,0,1.2,2,1,1)
+% Sample usage: 
+% E=rnewtsolver_p_exact(3,-2.5,50,2000,1e-10,0,1.2,2,1,1)
 % Spatial interval is [-A,A], with Nx subintervals. Nx must be even.
 % delta = step size in gradient descent step
 % u = initial guess

@@ -2,7 +2,8 @@ function E=gradsolver_sum_exact(p,b,A,Nx,tol,u,delta,plot_final,plot_error)
 
 % Nehari manifold gradient descent method for approximating solutions of
 % u''''+bu''+cu=|u|^(p-1)*u+|u|^(q-1)*u where q=2*p-1
-% Sample usage: E=gradsolver_sum_exact(3,-4,100,1000,1e-10,0,1.2,1,1)
+% Sample usage: 
+% E=gradsolver_sum_exact(3,-4,100,1000,1e-10,0,1.2,1,1)
 % Spatial interval is [-A,A], with Nx subintervals
 % delta = step size in gradient descent step
 % u = initial guess, set u=0 to use default Gaussian
