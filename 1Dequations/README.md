@@ -5,10 +5,10 @@ A collection of m-files for approximating nontrivial solutions of the ODE
 $u''''+bu''+cu=f(u)$ on R for various nonlinear terms $f(u)$.
 
 Solutions are critical points of the functional S defined by
-$S(u)=(1/2) \int_R (u'')^2-b(u')^2+cu^2 dx - \int_R F(u) dx$
+$S(u)=\frac12\int_{\mathbb R} (u'')^2-b(u')^2+cu^2 dx - \int_{\mathbb R} F(u) dx$
 where $F'=f$. 
 
-Thus all solutions lie on the Nehari manifold P(u)=0, where P(u)=<S'(u),u>. There are three methods, all of which involve minimizing S constrained to the Nehari manifold. 
+Thus all solutions lie on the Nehari manifold $P(u)=0$, where $P(u)=<S'(u),u>$. There are three methods, all of which involve minimizing S constrained to the Nehari manifold. 
 
 The first method, "gradsolver", is a simple gradient descent followed by a scaling back to the Nehari manifold.
 
@@ -18,11 +18,11 @@ The third method, "rnewtsolver", is an inexact Newton method in which the Newton
 
 For each method:
 
-_p stands for the pure power nonlinearity f(u)=|u|^(p-1)*u
+_p stands for the pure power nonlinearity $f(u)=|u|^(p-1)u$
 
-_sum stands for a sum of powers f(u)=|u|^(p-1)*u+|u|^(q-1)*u
+_sum stands for a sum of powers $f(u)=|u|^(p-1)*u+|u|^(q-1)*u$
 
-_diff stands for a difference of powers f(u)=|u|^(q-1)*u-|u|^(p-1)*u where p<q
+_diff stands for a difference of powers $f(u)=|u|^(q-1)*u-|u|^(p-1)*u$ where $p<q$
 
 Solvers without _exact require all parameters in the equation as inputs (b,c,p,q), as well as the width of the spatial interval A, the number of subintervals Nx, an initial guess u (default is a Gaussian), an H^2 norm error tolerance tol, and step size delta. rnewtsolver also requires the number of terms n in the sum approximating the inverse of the Hessian. These solvers stop when the H^2 norm of the gradient of S is less than tol. 
 
