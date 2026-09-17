@@ -10,7 +10,9 @@ where F'=f.
 Thus all solutions lie on the Nehari manifold P(u)=0, where P(u)=<S'(u),u>. There are three methods, all of which involve minimizing S constrained to the Nehari manifold. 
 
 The first method, "gradsolver", is a simple gradient descent followed by a scaling back to the Nehari manifold.
+
 The second method, "rgradsolver", is a Riemannian gradient descent, where the gradient descent direction is determined by projecting the gradient of S onto the tangent space of the Nehari manifold. 
+
 The third method, "rnewtsolver", is an inexact Newton method in which the Newton iteration step is approximated by using a truncated Neumann series to approximate the Hessian of S.
 
 For each method:
