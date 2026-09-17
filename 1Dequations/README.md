@@ -2,11 +2,11 @@
 MATLAB code for solving elliptic equations using Nehari manifold gradient descent algorithm.
 
 A collection of m-files for approximating nontrivial solutions of the ODE
-u''''+bu''+cu=f(u) on R for various nonlinear terms f(u).
+$u''''+bu''+cu=f(u)$ on R for various nonlinear terms $f(u)$.
 
 Solutions are critical points of the functional S defined by
-S(u)=(1/2) int_R (u'')^2-b(u')^2+cu^2 dx - int_R F(u) dx
-where F'=f. 
+$S(u)=(1/2) \int_R (u'')^2-b(u')^2+cu^2 dx - \int_R F(u) dx$
+where $F'=f$. 
 
 Thus all solutions lie on the Nehari manifold P(u)=0, where P(u)=<S'(u),u>. There are three methods, all of which involve minimizing S constrained to the Nehari manifold. 
 
