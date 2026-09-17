@@ -1,5 +1,5 @@
 # nehari-manifold-gradient-descent
-MATLAB code for solving elliptic equations using Nehari manifold gradient descent algorithm.
+MATLAB code for solving elliptic equations using Nehari manifold gradient descent algorithms.
 
 A collection of m-files for approximating nontrivial solutions of equations of the form $Lu=f(u)$, where $L$ is an elliptic operator.
 
